@@ -1,22 +1,28 @@
 import { connect } from 'react-redux';
-import { changeFilter } from 'redux/contacts/contacts-actions';
+import { LoaderSpinner } from 'components/Loader/Loader';
+import { changeFilter } from 'redux/contacts/contactsActions';
 
-import { Label, Input } from './Filter.styled';
+import { Container, Label, Input } from './Filter.styled';
 
-const Filter = ({ value, onChange }) => {
+const Filter = ({ value, onChange, isLoadingContacts }) => {
     return (
-        <Label>
-            Filter contacts by name
-            <Input
-                type="text"
-                value={value}
-                onChange={onChange} />
-        </Label>
+        <Container>
+            <Label>
+                Filter contacts by name
+                <Input
+                    type="text"
+                    value={value}
+                    onChange={onChange} />
+            </Label>
+            {isLoadingContacts && <LoaderSpinner />}
+        </Container>
+
     );
 };
 
-const mapStateToProps = (state) => ({
-    value: state.contacts.filter,
+const mapStateToProps = ({ contacts: { filter, loading } }) => ({
+    value: filter,
+    isLoadingContacts: loading,
 })
 
 const mapDispatchToProps = dispatch => ({

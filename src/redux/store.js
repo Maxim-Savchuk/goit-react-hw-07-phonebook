@@ -1,17 +1,7 @@
 import { configureStore, getDefaultMiddleware, combineReducers } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import { contactsReducer } from './contacts/contacts-reducer';
+import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import { contactsReducer } from './contacts/contactsReducer';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -22,14 +12,8 @@ const middleware = [
   logger,
 ];
 
-const contactsPersistConfig = {
-  key: 'contacts',
-  storage,
-  blacklist: ['filter'],
-};
-
 const rootReducer = combineReducers({
-  contacts: persistReducer(contactsPersistConfig, contactsReducer),
+  contacts: contactsReducer,
 });
 
 export const store = configureStore({
@@ -37,5 +21,3 @@ export const store = configureStore({
   middleware,
   devTools: process.env.NODE_ENV === 'development',
 });
-
-export const persistor = persistStore(store);
