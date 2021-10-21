@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { RiContactsBookLine } from 'react-icons/ri';
+import { MdPeopleAlt } from 'react-icons/md';
 
 export const Container = styled.div`
   padding: 0 50px;
@@ -8,7 +10,30 @@ export const Container = styled.div`
 
 export const PhonebookTitle = styled.h1`
   font-size: 28px;
+  display: flex;
+  align-items: center;
+  transition: all 300ms ease-in;
+  &:hover{
+    color: rgb(73, 167, 230);
+  }
 `;
 
 export const ContactsTitle = styled.h2`
+  margin: 10px 0 10px 0;
+  display: flex;
+  align-items: center;
+  transition: all 300ms ease-in;
+  &:hover{
+    color: rgb(73, 167, 230);
+  }
+`;
+
+export const Phonebook = styled(RiContactsBookLine)`
+  font-size: 27px;
+  margin: 0 0 0 10px;
+`;
+
+export const People = styled(MdPeopleAlt)`
+  font-size: 27px;
+  margin: 0 0 0 10px;
 `;

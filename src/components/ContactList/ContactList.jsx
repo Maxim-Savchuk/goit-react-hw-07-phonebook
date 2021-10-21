@@ -1,8 +1,6 @@
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { fetchContacts, deleteContact } from 'redux/contacts/contactsOperations';
 
-import { Item, Button } from './ContactList.styled';
+import { Item, Button, Trash } from './ContactList.styled';
 
 const ContactList = ({ contacts, firstFetchContacts, onDeleteContact }) => {
     useEffect(() => {
@@ -19,7 +17,7 @@ const ContactList = ({ contacts, firstFetchContacts, onDeleteContact }) => {
                             <Button
                                 type="button"
                                 onClick={() => onDeleteContact(id)}
-                            >Delete</Button>
+                            >Delete<Trash /></Button>
                         </Item>
                     );
                 })}
@@ -28,19 +26,4 @@ const ContactList = ({ contacts, firstFetchContacts, onDeleteContact }) => {
     );
 };
 
-const getFilteredContacts = (allContacts, filter) => {
-    const normalizedFilter = filter.toLowerCase();
-    return allContacts.filter(contact =>
-        contact.name.toLowerCase().includes(normalizedFilter));
-}
-
-const mapStateToProps = ({ contacts: { items, filter } }) => ({
-    contacts: getFilteredContacts(items, filter),
-})
-
-const mapDispatchToProps = dispatch => ({
-    onDeleteContact: contactId => dispatch(deleteContact(contactId)),
-    firstFetchContacts: () => dispatch(fetchContacts()),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
+export default ContactList;

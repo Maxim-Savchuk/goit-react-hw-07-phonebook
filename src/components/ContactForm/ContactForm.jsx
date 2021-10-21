@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { connect } from 'react-redux';
 import { addContact } from 'redux/contacts/contactsOperations'
-import { toast } from 'react-toastify';
+import { getContacts } from 'redux/contacts/contactsSelectors';
 
-import { Container, Form, Label, Input, Button } from './ContactForm.styled';
+import { Container, Form, Label, Input, Button, Plus } from './ContactForm.styled';
 
 const ContactForm = ({ onSubmit, contacts }) => {
     const [name, setName] = useState('');
@@ -72,13 +73,13 @@ const ContactForm = ({ onSubmit, contacts }) => {
                         onChange={handleChange}
                     />
                 </Label>
-                <Button type="submit">Add contact</Button>
+                <Button type="submit"><span>Add contact</span><Plus /></Button>
             </Form>
         </Container>
     );
 }
 
-const mapStateToProps = (state) => ({ contacts: state.contacts.items });
+const mapStateToProps = (state) => ({ contacts: getContacts(state) });
 
 const mapDispatchToProps = dispatch => ({
     onSubmit: (name, number) => dispatch(addContact(name, number)),

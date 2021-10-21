@@ -1,1 +1,1 @@
-export * from './ContactList.jsx';
+export { default as ContactList } from './ContactList.container.jsx';

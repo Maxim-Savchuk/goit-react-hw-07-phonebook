@@ -1,19 +1,19 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ContactForm from 'components/ContactForm/ContactForm';
-import Filter from 'components/Filter/Filter';
-import ContactList from 'components/ContactList/ContactList';
+import { ContactForm } from 'components/ContactForm';
+import { Filter } from 'components/Filter';
+import { ContactList } from 'components/ContactList';
 
-import { Container, PhonebookTitle, ContactsTitle } from './App.styled';
+import { Container, PhonebookTitle, ContactsTitle, Phonebook, People } from './App.styled';
 
 export const App = () => {
 
   return (
     <Container>
-      <PhonebookTitle>Phonebook</PhonebookTitle>
+      <PhonebookTitle>Phonebook<Phonebook /></PhonebookTitle>
       <ContactForm />
 
-      <ContactsTitle>Contacts</ContactsTitle>
+      <ContactsTitle>Contacts<People /></ContactsTitle>
       <Filter />
       <ContactList />
 
