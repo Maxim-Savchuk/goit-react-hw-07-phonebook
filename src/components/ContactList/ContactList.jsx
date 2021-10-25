@@ -1,12 +1,6 @@
-import { useEffect } from 'react';
-
 import { Item, Button, Trash } from './ContactList.styled';
 
-const ContactList = ({ contacts, firstFetchContacts, onDeleteContact }) => {
-    useEffect(() => {
-        firstFetchContacts();
-    }, [firstFetchContacts])
-
+const ContactList = ({ contacts, onDeleteContact }) => {
     return (
         <div>
             <ul>

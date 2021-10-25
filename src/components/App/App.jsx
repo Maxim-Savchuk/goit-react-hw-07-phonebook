@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { fetchContacts } from 'redux/contacts/contactsOperations';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ContactForm } from 'components/ContactForm';
@@ -6,7 +9,10 @@ import { ContactList } from 'components/ContactList';
 
 import { Container, PhonebookTitle, ContactsTitle, Phonebook, People } from './App.styled';
 
-export const App = () => {
+const App = ({ firstFetchContacts }) => {
+  useEffect(() => {
+    firstFetchContacts();
+  }, [firstFetchContacts]);
 
   return (
     <Container>
@@ -21,3 +27,9 @@ export const App = () => {
     </Container>
   )
 }
+
+const mapDispatchToProps = dispatch => ({
+  firstFetchContacts: () => dispatch(fetchContacts()),
+})
+
+export default connect(null, mapDispatchToProps)(App);

@@ -1,4 +1,3 @@
-import shortid from 'shortid';
 import axios from 'axios';
 import {
   fetchContactsRequest,
@@ -26,7 +25,7 @@ const fetchContacts = () => async dispatch => {
 };
 
 const addContact = (name, number) => async dispatch => {
-  const contact = { id: shortid.generate(), name, number };
+  const contact = { name, number };
 
   dispatch(addContactRequest());
 
